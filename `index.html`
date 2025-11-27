@@ -1,7 +1,3 @@
-
-### 2. `index.html`
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,28 +6,43 @@
   <title>thankful://</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦃</text></svg>">
+  <style>
+    #qrcode { margin: 2rem auto; width: 200px; height: 200px; background: white; padding: 10px; border-radius: 16px; }
+    .qr-instruction { font-size: 1.1rem; margin: 1rem 0; opacity: 0.9; }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>thankful://</h1>
     <p class="subtitle">Say it once. It lives forever.</p>
-
     <div class="turkey">🦃</div>
 
-    <textarea id="message" placeholder="I’m thankful for… (or hold the mic below to speak)" rows="4"></textarea>
+    <div class="qr-instruction">Print this QR and put it on the table tonight</div>
+    <div id="qrcode"></div>
 
-    <button id="voiceBtn" class="voice">🎙️ Hold to speak</button>
-    <button id="sendBtn">Send my thanks to eternity</button>
+    <textarea id="message" placeholder="I’m thankful for… (or hold mic to speak)" rows="4"></textarea>
+
+    <button id="voiceBtn">🎙️ Hold to speak</button>
+    <button id="sendBtn">Send to eternity</button>
 
     <p id="status"></p>
 
     <div class="footer">
-      <p>Every Thanksgiving this becomes a galaxy.<br/>Come back and zoom through millions of lights.</p>
-      <p>Made with love & chaos — <a href="https://github.com/thankful-protocol/thankful" target="_blank">open source forever</a></p>
+      <p>Made with chaos & love — <a href="https://github.com/LHMisme420/thankful-" target="_blank">LHMisme420</a></p>
     </div>
   </div>
 
+  <!-- QR Code Generator (zero dependencies) -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
   <script src="https://unpkg.com/@bundlr-network/client"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <script>
+    // AUTO-GENERATE QR CODE POINTING TO THIS EXACT PAGE
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      data: location.href,
+      image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5alPC90ZXh0Pjwvc3ZnPg==", // tiny turkey in the middle
+      dotsOptions: { color: "#ff6b6b", type: "extra-rounded" },
+      cornersSquareOptions: { color: "#fff
