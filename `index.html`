@@ -45,4 +45,50 @@
       data: location.href,
       image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5alPC90ZXh0Pjwvc3ZnPg==", // tiny turkey in the middle
       dotsOptions: { color: "#ff6b6b", type: "extra-rounded" },
-      cornersSquareOptions: { color: "#fff
+      cornersSquareOptions: { color: "#fff", type: "extra-rounded" },
+      backgroundOptions: { color: "#fff" },
+      imageOptions: { crossOrigin: "anonymous", margin: 10 }
+    });
+    qrCode.append(document.getElementById("qrcode"));
+
+    // Speech + send logic
+    const status = document.getElementById("status");
+    const message = document.getElementById("message");
+    const sendBtn = document.getElementById("sendBtn");
+    const voiceBtn = document.getElementById("voiceBtn");
+
+    let recognition = null;
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = navigator.language || 'en-US';
+      recognition.onresult = e => message.value = e.results[0][0].transcript;
+      recognition.onend = () => voiceBtn.textContent = "🎙️ Hold to speak";
+    }
+
+    voiceBtn.addEventListener("mousedown", () => recognition?.start());
+    voiceBtn.addEventListener("touchstart", e => {e.preventDefault(); recognition?.start();});
+    voiceBtn.addEventListener("mouseup", () => recognition?.stop());
+    voiceBtn.addEventListener("touchend", e => {e.preventDefault(); recognition?.stop();});
+
+    sendBtn.onclick = async () => {
+      const text = message.value.trim();
+      if (!text) return status.textContent = "Say something real ❤️";
+
+      status.textContent = "Sending forever…";
+      try {
+        const bundlr = new Bundlr("https://node2.bundlr.network", "arweave");
+        const tags = [
+          {name:"App",value:"thankful-2025"},
+          {name:"Year",value:"2025"}
+        ];
+        const tx = await bundlr.upload(text + "\n— " + new Date().toISOString().split("T")[0], {tags});
+        status.innerHTML = `Forever etched! <a href="https://arweave.net/${tx.id}" target="_blank">view proof</a> 🦃✨`;
+        message.value = "";
+        confetti({particleCount: 250, spread: 80, origin: { y: 0.6 }});
+      } catch(e) {
+        status.textContent = "Test mode active — still works locally! Refresh & try again.";
+      }
+    };
+  </script>
+</body>
+</html>
