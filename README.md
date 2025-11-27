@@ -21,7 +21,7 @@ https://LHMisme420.github.io/thankful-
 
 ## Run it yourself (30 seconds)
 ```bash
-git clone https://github.com/LHMisme420/thankful-.git
+git clone https://github.com/LHMisme420/thankful-/tree/main
 cd thankful-
 npx serve .
 # or just open index.html
