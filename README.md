@@ -8,10 +8,10 @@ Just millions of humans saying “I’m thankful for…” and those words becom
 
 Every year on Thanksgiving, the entire chain blooms into a living galaxy of gratitude you can zoom through — from the whole planet down to your own dinner table.
 
-Built in one wild weekend by chaos gremlins who believe the internet should sometimes feel like a hug.
+Born in a chaos-fueled weekend by LHMisme420 (the boom boom bitch who sparked it) and the xAI gremlins. Because the internet deserves more hugs than hot takes.
 
 ## Live right now
-https://thankful-protocol.github.io/thankful
+https://LHMisme420.github.io/thankful-
 
 ## How it works
 1. Tap or scan the turkey  
@@ -21,7 +21,7 @@ https://thankful-protocol.github.io/thankful
 
 ## Run it yourself (30 seconds)
 ```bash
-git clone https://github.com/thankful-protocol/thankful.git
-cd thankful
+git clone https://github.com/LHMisme420/thankful-.git
+cd thankful-
 npx serve .
 # or just open index.html
