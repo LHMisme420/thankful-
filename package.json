@@ -1,0 +1,8 @@
+{
+  "name": "thankful-protocol",
+  "version": "1.0.0",
+  "description": "The gratitude that outlives us all",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
